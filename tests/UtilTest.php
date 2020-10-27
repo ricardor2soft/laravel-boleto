@@ -44,43 +44,33 @@ class UtilTest extends TestCase
         $this->assertEquals('1234567890', Util::remove(1, 10, $array));
     }
 
-    /**
-     * @expectedException     \Exception
-     */
     public function testAddMaiorTamanhoCnab() {
+        $this->expectException(\Exception::class);
         $array = array_fill(0, 400, 0);
         Util::adiciona($array, 400, 410, '1234567890');
     }
 
-    /**
-     * @expectedException     \Exception
-     */
     public function testAddFinalMenorInicial() {
         $array = array_fill(0, 400, 0);
+        $this->expectException(\Exception::class);
         Util::adiciona($array, 300, 290, '1234567890');
     }
 
-    /**
-     * @expectedException     \Exception
-     */
     public function testAddStringMaiorRange() {
         $array = array_fill(0, 400, 0);
+        $this->expectException(\Exception::class);
         Util::adiciona($array, 300, 301, '1234567890');
     }
 
-    /**
-     * @expectedException     \Exception
-     */
     public function testRemMaiorTamanhoCnab() {
         $array = array_fill(0, 400, 0);
+        $this->expectException(\Exception::class);
         Util::remove(400, 410, $array);
     }
 
-    /**
-     * @expectedException     \Exception
-     */
     public function testRemFinalMenorInicial() {
         $array = array_fill(0, 400, 0);
+        $this->expectException(\Exception::class);
         Util::remove(310, 300, $array);
     }
 
@@ -89,7 +79,6 @@ class UtilTest extends TestCase
         $this->assertEquals('0000001234', Util::formatCnab('9L', '1.2.3.4', 10));
         $this->assertEquals('0000123400', Util::formatCnab('9', '1234', 10, 2));
         $this->assertEquals('ABC       ', Util::formatCnab('X', 'ABC', 10));
-
         $this->expectException(\Exception::class);
         Util::formatCnab('J', '123', 10);
     }
@@ -115,7 +104,6 @@ class UtilTest extends TestCase
         $this->assertEquals('1,000.000', Util::nFloat(1000, 3, true));
         $this->assertEquals('1,000.123', Util::nFloat(1000.123000000, false, true));
         $this->assertEquals('1,000.123000009', Util::nFloat(1000.123000009, false, true));
-
         $this->assertEquals('', Util::nReal('ABC'));
         $this->assertEquals('', Util::nReal(null));
         $this->assertEquals('R$ 1.000,00', Util::nReal(1000));
