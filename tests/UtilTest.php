@@ -141,17 +141,13 @@ class UtilTest extends TestCase
         $this->assertEquals([123], Util::controle2array(123));
     }
 
-    /**
-     * @expectedException     \Exception
-     */
     public function testControleArrayMaior25() {
+        $this->expectException(\Exception::class);
         Util::array2Controle(['ABCDEFG' => 1231231, 'EFGHIJKL' => 1231231]);
     }
 
-    /**
-     * @expectedException     \Exception
-     */
     public function testControleArrayKeyNumerica() {
+        $this->expectException(\Exception::class);
         Util::array2Controle([0 => 1]);
     }
 }
