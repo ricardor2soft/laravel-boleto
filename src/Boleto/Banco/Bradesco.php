@@ -39,6 +39,7 @@ class Bradesco  extends AbstractBoleto implements BoletoContract
         'cip' => '000',
         'mostra_cip' => true,
     ];
+
     /**
      * Espécie do documento, coódigo para remessa
      *
